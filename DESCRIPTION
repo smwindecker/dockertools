@@ -1,11 +1,20 @@
 Package: dockertools
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Wrapper functions to write, build, and run docker containers
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Authors@R: c(
+    person(given = "Saras",
+           family = "Windecker",
+           role = c("aut", "cre"),
+           email = "saras.windecker@gmail.com"),
+    person(given = "Daniel",
+           family = "Falster", 
+           role = "aut",
+           email = "daniel.falster@unsw.edu.au")
+    )
+Description: Series of functions to wrap dockerfiles for local containers and for binder-enabled 
+    containers. 
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+RoxygenNote: 6.1.1
