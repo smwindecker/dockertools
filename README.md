@@ -3,6 +3,7 @@
 1. create project description with `holepunch::write_compendium_description()` 
 2. write local dockerfile with `dockertools::write_local_dockerfile()`
 3. build local dockerfile with `dockertools::build_local_dockerfile()`
+if you would like to track the build, run build -t tagname . in terminal 
 4. run local dockerfile with `dockertools::run_local_dockerfile()`
 
 after happy with project: 
