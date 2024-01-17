@@ -6,15 +6,19 @@
 Assumes your built image is named after your dockerhub username,
 and has been pushed to dockerhub}
 \usage{
-write_binder_dockerfile(dockerhub_username, project_name,
-  project_maintainer, maintainer_email)
+write_binder_dockerfile(
+  dockerhub_username,
+  project_name,
+  maintainer_name,
+  maintainer_email
+)
 }
 \arguments{
 \item{dockerhub_username}{Username for dockerhub}
 
 \item{project_name}{Built image name}
 
-\item{project_maintainer}{Name of maintainer}
+\item{maintainer_name}{Name of maintainer}
 
 \item{maintainer_email}{Email address of maintainer}
 }

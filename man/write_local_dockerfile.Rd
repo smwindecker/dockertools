@@ -4,15 +4,14 @@
 \alias{write_local_dockerfile}
 \title{Writes dockerfile}
 \usage{
-write_local_dockerfile(maintainer_name, maintainer_email,
-  r_ver = "3.6.1")
+write_local_dockerfile(maintainer_name, maintainer_email, r_ver = NULL)
 }
 \arguments{
 \item{maintainer_name}{Name of maintainer}
 
 \item{maintainer_email}{Email address of maintainer}
 
-\item{r_ver}{R version of base image}
+\item{r_ver}{optional to specify R version of base image}
 }
 \value{
 Writes Dockerfile to current directory

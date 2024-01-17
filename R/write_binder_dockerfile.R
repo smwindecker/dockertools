@@ -4,7 +4,7 @@
 #'
 #' @param dockerhub_username Username for dockerhub
 #' @param project_name Built image name
-#' @param project_maintainer Name of maintainer
+#' @param maintainer_name Name of maintainer
 #' @param maintainer_email Email address of maintainer
 #'
 #' @return Creates .binder folder and writes binder-enabled Dockerfile to it
@@ -13,11 +13,11 @@
 #' @examples write_binder_dockerfile('my_username', 'my_project', 'my_name', 'my_email')
 write_binder_dockerfile <- function (dockerhub_username,
                                      project_name,
-                                     project_maintainer,
+                                     maintainer_name,
                                      maintainer_email) {
 
 
-  if (isNULL(dockerhub_username)) {
+  if (is.null(dockerhub_username)) {
     gh_repo <- git2r::remote_url()
     gh_repo <- gsub(".git", "", gsub("https://github.com/", "", gh_repo, fixed = TRUE), fixed=TRUE)
     dockerhub_username <- gh_repo
@@ -27,8 +27,8 @@ write_binder_dockerfile <- function (dockerhub_username,
   dir.create('.binder')
   fileConn <- file(".binder/Dockerfile")
   contents <- paste0('FROM ', dockerhub_username, '/', project_name, '\n',
-                     'LABEL maintainer=', project_maintainer, '\n',
-                     'LABEL email=', maintainer_email, '\n\n',
+                     'LABEL maintainer=\"', maintainer_name, '\"\n',
+                     'LABEL email=\"', maintainer_email, '\"\n\n',
 
 '# This file copied from
 # https://github.com/rocker-org/binder/blob/master/Dockerfile
@@ -54,10 +54,10 @@ ENV LD_LIBRARY_PATH /usr/local/lib/R/lib
 ENV HOME /home/${NB_USER}
 WORKDIR ${HOME}
 
-RUN apt-get update && \
-apt-get -y install python3-venv python3-dev && \
-apt-get purge && \
-apt-get clean && \
+RUN apt-get update && \\
+apt-get -y install python3-venv python3-dev && \\
+apt-get purge && \\
+apt-get clean && \\
 rm -rf /var/lib/apt/lists/*
 
   # Create a venv dir owned by unprivileged user & set up notebook in it
@@ -65,13 +65,13 @@ rm -rf /var/lib/apt/lists/*
   RUN mkdir -p ${VENV_DIR} && chown -R ${NB_USER} ${VENV_DIR}
 
 USER ${NB_USER}
-RUN python3 -m venv ${VENV_DIR} && \
+RUN python3 -m venv ${VENV_DIR} && \\
 # Explicitly install a new enough version of pip
-pip3 install pip==9.0.1 && \
-pip3 install --no-cache-dir \
+pip3 install pip==9.0.1 && \\
+pip3 install --no-cache-dir \\
 jupyter-rsession-proxy
 
-RUN R --quiet -e \"devtools::install_github(\'IRkernel/IRkernel\')\" && \
+RUN R --quiet -e \"devtools::install_github(\'IRkernel/IRkernel\')\" && \\
 R --quiet -e \"IRkernel::installspec(prefix=\'${VENV_DIR}\')\"
 
 USER root

@@ -3,7 +3,8 @@
 \name{build_local_dockerfile}
 \alias{build_local_dockerfile}
 \title{Docker build local image
-Assumes your built image is named after your dockerhub username}
+Assumes you want to build your image with dockerhub username as part of image name
+Docker must be installed}
 \usage{
 build_local_dockerfile(dockerhub_username, project_name)
 }
@@ -14,7 +15,8 @@ build_local_dockerfile(dockerhub_username, project_name)
 }
 \description{
 Docker build local image
-Assumes your built image is named after your dockerhub username
+Assumes you want to build your image with dockerhub username as part of image name
+Docker must be installed
 }
 \examples{
 build_local_dockerfile('my_username', 'my_project_name')

@@ -13,6 +13,6 @@ run_local_dockerfile <- function (dockerhub_username, project_name) {
   system(paste0('docker run -v $(pwd):/home/rstudio/ -p 8787:8787 -e DISABLE_AUTH=true ',
                 dockerhub_username, '/', project_name))
 
-  browseURL('localhost:8787')
+  utils::browseURL('localhost:8787')
 
 }
